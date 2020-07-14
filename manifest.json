@@ -1,0 +1,37 @@
+{
+    "name": "chekbox",
+    "description" : "choose chekbox",
+    "version": "1.1",
+    "icons":{
+        "100":"./images/off-button-100.png",
+        "64":"./images/off-button-64.png",
+        "16":"./images/off-button-16.png"
+    },
+
+    "manifest_version": 2,
+    "browser_action": {
+      "default_icon": "./images/off-button-16.png"
+    },
+
+
+    "permissions": ["<all_urls>", "activeTab", "tabs", "storage", "http://*/",
+      "https://*/",  "contentSettings" ],
+
+    "background": {
+      "scripts": ["./scripts/jquery.js", "./scripts/background.js"]
+    },
+    "web_accessible_resources":[
+      "./images/*.png"
+    ],
+    "content_security_policy": "script-src 'self'; object-src 'self'",
+    
+    "content_scripts": [
+        {
+          "run_at":"document_end",
+          "matches": ["<all_urls>"],
+          "js": ["./scripts/jquery.js",  "./scripts/content.js"],
+          "css":["./styles/content.css"]
+        }
+      ]
+    
+}
